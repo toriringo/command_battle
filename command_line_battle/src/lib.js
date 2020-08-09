@@ -23,8 +23,8 @@ class Friend
 	getMainParameter()
 	{
 		return "<b>" + this.name + "</b><br>"
-			+ "体力 " + this.hp + "<br>"
-			+ "薬草 " + this.herb + "<br>";
+		       + "体力 " + this.hp + "<br>"
+		       + "薬草 " + this.herb + "<br>";
 	}
 
 	// コマンドビューに表示するコマンド（HTML）を返す
@@ -38,8 +38,8 @@ class Friend
 		// はじめに表示するコマンド
 		if(event === "start") {
 			let text = ['<div><b>　' + this.name + '</b></div>',
-						'<div id="attackCommand">攻撃</div>',
-						'<div id="recoveryCommand">薬草</div>'];
+			            '<div id="attackCommand">攻撃</div>',
+			            '<div id="recoveryCommand">薬草</div>'];
 			return text;
 		}
 
@@ -60,7 +60,7 @@ class Friend
 
 			for(let c in livedEnemy) {
 				livedEnemyHTML.push('<div class="enemyCommand">' +
-									charactors[livedEnemy[c]].name + '</div>');
+				                    charactors[livedEnemy[c]].name + '</div>');
 			}
 			livedEnemyHTML.unshift('<div><b>　' + this.name + '</b></div>');
 
@@ -131,7 +131,7 @@ class Friend
 			}
 
 			Message.printMessage(this.name + "の攻撃<br>" +
-									this.target.name + "に" + this.offense + "のダメージを与えた！<br>");
+			                     this.target.name + "に" + this.offense + "のダメージを与えた！<br>");
 		}
 		else {
 			Message.printMessage(this.name + "の攻撃・・・<br>" + this.target.name + "は倒れている<br>");
@@ -209,7 +209,7 @@ class Troll extends Enemy
 		// 攻撃相手が生存していれば攻撃
 		if(f.liveFlag) {
 			Message.printMessage(this.name + "が襲いかかってきた<br>" +
-									f.name + "は" + this.offense + "のダメージを受けた！<br>");
+			                     f.name + "は" + this.offense + "のダメージを受けた！<br>");
 		}
 		else {
 			Message.printMessage(this.name + "の攻撃・・・<br>" + f.name + "は倒れている<br>");
@@ -251,7 +251,7 @@ class Dragon extends Enemy
 		// 攻撃相手が生存していれば攻撃
 		if(f.liveFlag) {	
 			Message.printMessage(this.name + "は炎を吹いた<br>" +
-									f.name + "は" + this.offense + "のダメージを受けた！<br>");
+			                     f.name + "は" + this.offense + "のダメージを受けた！<br>");
 		}
 		else {
 			Message.printMessage(this.name + "の攻撃・・・<br>" + f.name + "は倒れている<br>");
@@ -301,7 +301,7 @@ class GameManage
 		for(let c in charactors) {
 			if(charactors[c].type === "friend") {
 				parameterView.innerHTML += '<div class="parameter">' +
-											charactors[c].getMainParameter() + '</div>';
+				                           charactors[c].getMainParameter() + '</div>';
 			}
 		}
 
