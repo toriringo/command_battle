@@ -37,7 +37,7 @@ class Friend
 	{
 		// はじめに表示するコマンド
 		if(event === "start") {
-			let text = ['<div><b>　' + this.name + '</b></div>',
+			let text = ['<div><b id="friendName">' + this.name + '</b></div>',
 			            '<div id="attackCommand">攻撃</div>',
 			            '<div id="recoveryCommand">薬草</div>'];
 			return text;
@@ -62,7 +62,7 @@ class Friend
 				livedEnemyHTML.push('<div class="enemyCommand">' +
 				                    charactors[livedEnemy[c]].name + '</div>');
 			}
-			livedEnemyHTML.unshift('<div><b>　' + this.name + '</b></div>');
+			livedEnemyHTML.unshift('<div><b id="friendName">' + this.name + '</b></div>');
 
 			return livedEnemyHTML;
 		}
