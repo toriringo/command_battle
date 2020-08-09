@@ -231,6 +231,12 @@ class Dragon extends Enemy
 	// 攻撃メソッド
 	attack()
 	{
+		// 一定の確率で攻撃をミスする
+		if(getRandomIntInclusive(0, 4) === 4) {
+			Message.printMessage("ドラゴンは<br>グフッグフッと咳き込んでいる・・・<br>");
+			return;
+		}
+
 		// 生存している味方をランダムに選択する
 		let f = charactors[searchLivedCharactorRamdom("friend")];
 
@@ -243,7 +249,7 @@ class Dragon extends Enemy
 		}
 
 		// 攻撃相手が生存していれば攻撃
-		if(f.liveFlag) {
+		if(f.liveFlag) {	
 			Message.printMessage(this.name + "は炎を吹いた<br>" +
 									f.name + "は" + this.offense + "のダメージを受けた！<br>");
 		}
