@@ -4,11 +4,12 @@
 class Friend
 {
 	// コンストラクター
-	constructor(name, hp, offense, speed, herb, herbPower)
+	constructor(name, maxHp, offense, speed, herb, herbPower)
 	{
 		this.name = name;            // 名前
 		this.type = "friend";        // 敵味方種別
-		this.hp = hp;                // 体力
+		this.maxHp = maxHp;          // 最大体力
+		this.hp = maxHp;             // 体力
 		this.liveFlag = true;        // 生存フラグ
 		this.offense = offense;      // 攻撃力
 		this.speed = speed;          // 素早さ
@@ -19,11 +20,11 @@ class Friend
 		this.target;                 // ターゲット
 	}
 
-	// 主要なパラメータを取得する
+	// 表示用のパラメータを返す
 	getMainParameter()
 	{
 		return "<b>" + this.name + "</b><br>"
-		       + "体力 " + this.hp + "<br>"
+		       + "体力 " + this.hp + "/" + this.maxHp + "<br>"
 		       + "薬草 " + this.herb + "<br>";
 	}
 
@@ -141,17 +142,33 @@ class Friend
 	// 回復する
 	recovery()
 	{
-		// 薬草の数を確認して回復する
-		if(this.herb > 0) {
-			// 体力に薬草の回復力を足す
-			this.hp += this.herbPower;
-			// 薬草をひとつ減らす
-			--this.herb;
-			Message.printMessage(this.name + "は薬草を飲んだ<br>体力が" + this.herbPower + "回復した！<br>");
-		}
-		else {
+		// 薬草がない場合
+		if(this.herb <= 0) {
 			Message.printMessage(this.name + "は薬草を・・・<br>薬草がない！<br>");
+			return;
 		}
+
+		// 体力が最大体力の場合
+		if(this.maxHp == this.hp) {
+			Message.printMessage(this.name + "は薬草を・・・<br>これ以上回復できない！<br>");
+			return;
+		}
+		
+		// 回復する値
+		let heal = this.herbPower;
+
+		// 最大体力を超えて回復してしまいそうな場合
+		if(this.maxHp - this.hp < this.herbPower) {
+			heal = this.maxHp - this.hp;
+		}
+
+		// 体力を回復する
+		this.hp += heal;
+
+		// 薬草をひとつ減らす
+		--this.herb;
+
+		Message.printMessage(this.name + "は薬草を飲んだ<br>体力が" + heal + "回復した！<br>");
 	}
 }
 

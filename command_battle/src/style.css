@@ -14,7 +14,7 @@ div {
 /* パラメータビュー */
 #parameterView {
     display: inline-block;
-    width: 500px;
+    width: 560px;
     text-align: left;
     margin: 20px 0px 0px 0px;
     padding: 8px 0px 10px 20px;
@@ -26,7 +26,7 @@ div {
 /* パラメータ（各キャラクター） */
 .parameter {
     display: inline-block;
-    width: 80px;
+    width: 130px;
     vertical-align: top;
 }
 
@@ -41,7 +41,7 @@ div {
 /* コマンドビュー */
 #commandView {
     display: inline-block;
-    width: 108px;
+    width: 118px;
     height: 150px;
     text-align: left;
     vertical-align: top;
@@ -59,7 +59,7 @@ div {
 /* メッセージビュー */
 #messageView {
     display: inline-block;
-    width: 350px;
+    width: 400px;
     height: 150px;
     text-align: left;
     vertical-align: top;
