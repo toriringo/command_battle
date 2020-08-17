@@ -24,7 +24,7 @@ class Friend
 	getMainParameter()
 	{
 		return "<b>" + this.name + "</b><br>"
-		       + "体力 " + this.hp + "/" + this.maxHp + "<br>"
+		       + "体力 " + this.hp + "<br>"
 		       + "薬草 " + this.herb + "<br>";
 	}
 
@@ -59,6 +59,7 @@ class Friend
 			// 生存している敵をコマンドビューに表示するためのHTML
 			let livedEnemyHTML = [];
 
+			// 生存している敵をコマンドビューに表示する
 			for(let c in livedEnemy) {
 				livedEnemyHTML.push('<div class="enemyCommand">' +
 				                    charactors[livedEnemy[c]].name + '</div>');
