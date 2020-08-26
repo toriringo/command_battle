@@ -1,5 +1,5 @@
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// 主人公クラス
+// 味方クラス
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class Friend
 {
@@ -292,18 +292,6 @@ function searchLivedCharactorRamdom(type)
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ツール
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// msミリ秒スリープする
-function sleep(ms)
-{
-	return new Promise(
-		function(resolve)
-		{
-			// msミリ秒スリープする
-			setTimeout(resolve, ms);
-		}
-	);
-}
-
 // minからmaxまでのランダムな整数を返す
 function getRandomIntInclusive(min, max)
 {
