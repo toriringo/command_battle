@@ -3,7 +3,7 @@
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class Friend
 {
-	// コンストラクター
+	// コンストラクタ
 	constructor(name, maxHp, offense, speed, herb, herbPower)
 	{
 		this.name = name;            // 名前
@@ -99,7 +99,7 @@ class Friend
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class Enemy
 {
-	// コンストラクター
+	// コンストラクタ
 	constructor(name, hp, offense, speed, path)
 	{
 		this.name = name;        // 名前
@@ -125,7 +125,7 @@ class Enemy
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class Troll extends Enemy
 {
-	// コンストラクター
+	// コンストラクタ
 	constructor(name, hp, offense, speed, path)
 	{
 		super(name, hp, offense, speed, path);
@@ -161,7 +161,7 @@ class Troll extends Enemy
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 class Dragon extends Enemy
 {
-	// コンストラクター
+	// コンストラクタ
 	constructor(name, hp, offense, speed, path)
 	{
 		super(name, hp, offense, speed, path);
