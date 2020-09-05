@@ -6,14 +6,14 @@ let enemy1 = new Troll("トロル", 270, 38, 20, "../image/troll.png");      // 
 let enemy2 = new Dragon("ドラゴン", 380, 68, 6, "../image/dragon.png");   // 敵
 
 // キャラクター配列をつくる
-let charactors = [];
-charactors.push(friend1);     // 味方
-charactors.push(friend2);     // 味方
-charactors.push(friend3);     // 味方
-charactors.push(enemy1);      // 敵
-charactors.push(enemy2);      // 敵
+let characters = [];
+characters.push(friend1);     // 味方
+characters.push(friend2);     // 味方
+characters.push(friend3);     // 味方
+characters.push(enemy1);      // 敵
+characters.push(enemy2);      // 敵
 
 
-charactors[0].command = "enemyCommand";
-charactors[0].target = charactors[searchCharactorByName("トロル")[0]];
-charactors[0].action();
+characters[0].command = "enemyCommand";
+characters[0].target = characters[searchCharacterByName("トロル")[0]];
+characters[0].action();

@@ -17,7 +17,7 @@ class Friend
 		this.herbPower = herbPower;  // 薬草の回復力
 
 		this.command = "";           // 選択されたコマンド
-		this.target;                 // ターゲット
+		this.target = "";            // ターゲット
 	}
 
 	// 行動する
@@ -135,7 +135,7 @@ class Troll extends Enemy
 	attack()
 	{
 		// 生存している味方をランダムに選択する
-		let f = charactors[searchLivedCharactorRamdom("friend")];
+		let f = characters[searchLivedcharacterRamdom("friend")];
 
 		// 攻撃対象の体力から、自分の攻撃力を引く
 		f.hp -= this.offense;
@@ -177,7 +177,7 @@ class Dragon extends Enemy
 		}
 
 		// 生存している味方をランダムに選択する
-		let f = charactors[searchLivedCharactorRamdom("friend")];
+		let f = characters[searchLivedcharacterRamdom("friend")];
 
 		// 攻撃対象の体力から、自分の攻撃力を引く
 		f.hp -= this.offense;
@@ -217,14 +217,14 @@ class Message
 }
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// charactors配列関連
+// characters配列関連
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // 種別（type）で指定されたキャラクターが、全滅しているか調べる
 function isAliveByType(type)
 {
-	for(let c in charactors) {
+	for(let c in characters) {
 		// 1人でも生存していればtrueを返す
-		if(charactors[c].type === type && charactors[c].liveFlag === true) {
+		if(characters[c].type === type && characters[c].liveFlag === true) {
 			return true;
 		}
 	}
@@ -233,60 +233,60 @@ function isAliveByType(type)
 }
 
 // 名前でキャラクターを探索し、配列の要素番号を返す
-function searchCharactorByName(name)
+function searchCharacterByName(name)
 {
 	// 探索した配列の要素番号
-	let charactorElementNum = [];
+	let characterElementNum = [];
 
 	// 指定されたキャラクターを探す
 	let i = 0;
-	for(let c in charactors) {
-		if(charactors[c].name === name) {
-			charactorElementNum.push(i);
+	for(let c in characters) {
+		if(characters[c].name === name) {
+			characterElementNum.push(i);
 		}
 		++i;
 	}
 
-	return charactorElementNum;
+	return characterElementNum;
 }
 
 // 種別（type）で指定された生存しているキャラクターを探し、配列の要素番号を返す
-function searchLivedCharactorByType(type)
+function searchLivedcharacterByType(type)
 {
 	// 種別（type）で指定された生存しているキャラクター配列の要素番号
-	let charactorElementNum = [];
+	let characterElementNum = [];
 
 	// 種別（type）で指定された生存しているキャラクターを探す
 	let i = 0;
-	for(let c in charactors) {
-		if(charactors[c].type === type && charactors[c].liveFlag === true) {
-			charactorElementNum.push(i);
+	for(let c in characters) {
+		if(characters[c].type === type && characters[c].liveFlag === true) {
+			characterElementNum.push(i);
 		}
 		++i;
 	}
 
-	return charactorElementNum;
+	return characterElementNum;
 }
 
 // 種別（type）で指定された生存しているキャラクターの要素番号をランダムで返す
-function searchLivedCharactorRamdom(type)
+function searchLivedcharacterRamdom(type)
 {
 	// 生存しているキャラクター
-	let livedCharactor = [];
+	let livedcharacter = [];
 
 	// 生存しているキャラクターを探して、その要素番号を配列に詰める
 	let i = 0;
-	for(let c in charactors) {
-		if(charactors[c].type === type && charactors[c].liveFlag === true) {
-			livedCharactor.push(i)
+	for(let c in characters) {
+		if(characters[c].type === type && characters[c].liveFlag === true) {
+			livedcharacter.push(i)
 		}
 		++i;
 	}
 
 	// 生存しているキャラクターのなかからランダムで1人選ぶ
-	let randomValue = getRandomIntInclusive(0, livedCharactor.length - 1);
+	let randomValue = getRandomIntInclusive(0, livedcharacter.length - 1);
 
-	return livedCharactor[randomValue];
+	return livedcharacter[randomValue];
 }
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
