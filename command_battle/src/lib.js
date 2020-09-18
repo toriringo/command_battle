@@ -410,7 +410,7 @@ class GameManage
 
 			await sleep(900);
 
-			// 倒れたキャラクターの要素を空にする
+			// 倒れたキャラクターを処理する
 			this.removeDiedCharacter();
 
 			await sleep(300);
