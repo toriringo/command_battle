@@ -20,14 +20,6 @@ class Friend
 		this.target = "";            // ターゲット
 	}
 
-	// 表示用のパラメータを返す
-	getMainParameter()
-	{
-		return "<b>" + this.name + "</b><br>"
-		       + "体力 " + this.hp + "<br>"
-		       + "薬草 " + this.herb + "<br>";
-	}
-
 	// 行動する
 	action()
 	{
@@ -206,156 +198,6 @@ class Dragon extends Enemy
 	}
 }
 
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// ゲーム管理クラス
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-class GameManage
-{
-	// コンストラクタ
-	constructor()
-	{
-		// 行動の順番を決める
-		this.actionOrder();
-
-		// パラメータを表示する
-		this.showParameter();
-
-		// 敵の画像を表示する
-		this.showEnemyImage();
-
-		// はじめのメッセージを表示する
-		this.showFirstMessage();
-	}
-
-	// 行動の順番を決める
-	actionOrder()
-	{
-		// 素早さでソートする
-		characters.sort(
-			function (a, b)
-			{
-				return b.speed - a.speed;
-			}
-		);
-	}
-
-	// パラメータを表示または更新する
-	showParameter()
-	{
-		// パラメータを消去する
-		parameterView.innerHTML = "";
-
-		// 味方のパラメータを表示する
-		for(let c in characters) {
-			if(characters[c].type === "friend") {
-				parameterView.innerHTML += '<div class="parameter">' +
-				                           characters[c].getMainParameter() + '</div>';
-			}
-		}
-
-		// 敵のパラメータをコンソールに表示する（デバッグ用）
-		for(let c in characters) {
-			if(characters[c].type === "enemy" ) {
-				console.log(characters[c].name + " " + characters[c].hp);
-			}
-		}
-	}
-
-	// 敵の画像を表示する
-	showEnemyImage()
-	{
-		let i = 0;
-		for(let c in characters) {
-			if(characters[c].type === "enemy") {
-				enemyImageView.innerHTML += '<img id="enemyImage' + c + '" src="' + characters[c].path
-				+ '" style="position:absolute; left:' + (160 * i++) +'px; bottom: 0px">';
-			}
-		}
-	}
-
-	// 戦闘開始時のメッセージを表示する
-	showFirstMessage()
-	{
-		Message.printMessage("モンスターが現れた<br>");
-	}
-
-	// 倒れたキャラクターを処理する
-	removeDiedCharacter()
-	{
-		for(let c in characters) {
-			if(characters[c].hp <= 0 && characters[c].liveFlag === true) {
-
-				Message.addMessage(characters[c].name + "は倒れた<br>");
-				// 生存フラグを落とす
-				characters[c].liveFlag = false;
-
-				// 敵の場合は画像を削除
-				if(characters[c].type === "enemy") {
-					document.getElementById("enemyImage" + c).remove();
-				}
-			}
-		}
-	}
-
-	// 勝敗の判定をする
-	jadgeWinLose()
-	{
-		// 味方が残っていなければゲームオーバー
-		if(! isAliveByType("friend")) {
-			Message.addMessage("全滅しました・・・<br>");
-			return "lose";
-		}
-
-		// 敵が残っていなければ勝利
-		if(! isAliveByType("enemy")) {
-			Message.addMessage("モンスターをやっつけた<br>");
-			return "win";
-		}
-
-		return "none";
-	}
-
-	// 1ターン
-	async battle()
-	{
-		// 勝敗
-		let winLose = "none";
-
-		for(let c in characters) {
-			// 倒れたキャラクターはスキップする
-			if(characters[c].liveFlag === false) {
-				continue;
-			}
-
-			await sleep(900);
-
-			// 各キャラクターの行動
-			characters[c].action();
-
-			await sleep(1100);
-
-			// パラメータを更新する
-			this.showParameter();
-
-			await sleep(900);
-
-			// 倒れたキャラクターを処理する
-			this.removeDiedCharacter();
-
-			await sleep(300);
-
-			// 勝敗の判定をする
-			winLose = this.jadgeWinLose();
-
-			// 決着がついた場合
-			if(winLose === "win" || winLose === "lose") {
-				return false;
-			}
-		}
-		return true;
-	}
-}
-
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // メッセージクラス
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -450,18 +292,6 @@ function searchLivedcharacterRamdom(type)
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ツール
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// msミリ秒スリープする
-function sleep(ms)
-{
-	return new Promise(
-		function(resolve)
-		{
-			// msミリ秒スリープする
-			setTimeout(resolve, ms);
-		}
-	);
-}
-
 // minからmaxまでのランダムな整数を返す
 function getRandomIntInclusive(min, max)
 {

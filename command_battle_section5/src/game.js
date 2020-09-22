@@ -16,11 +16,8 @@ characters.push(enemy2);      // 敵
 // ゲーム管理クラスをインスタンス化する
 let gameManage = new GameManage();
 
+// コマンドクラスをインスタンス化する
+let command = new Command();
 
-characters[1].command = "enemyCommand";
-characters[1].target = characters[searchCharacterByName("トロル")[0]];
-characters[2].command = "enemyCommand";
-characters[2].target = characters[searchCharacterByName("ドラゴン")[0]];
-characters[3].command = "recoveryCommand";
-
-gameManage.battle();
+// コマンド選択の準備を整える
+command.preparation();

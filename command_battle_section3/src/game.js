@@ -13,14 +13,7 @@ characters.push(friend3);     // 味方
 characters.push(enemy1);      // 敵
 characters.push(enemy2);      // 敵
 
-// ゲーム管理クラスをインスタンス化する
-let gameManage = new GameManage();
 
-
-characters[1].command = "enemyCommand";
-characters[1].target = characters[searchCharacterByName("トロル")[0]];
-characters[2].command = "enemyCommand";
-characters[2].target = characters[searchCharacterByName("ドラゴン")[0]];
-characters[3].command = "recoveryCommand";
-
-gameManage.battle();
+characters[0].command = "enemyCommand";
+characters[0].target = characters[searchCharacterByName("トロル")[0]];
+characters[0].action();
